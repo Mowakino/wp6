@@ -22,7 +22,7 @@ class CommentSeeder extends Seeder
 
             foreach ($commenters as $user) {
 
-                // ⭐ Prevent duplicate comments
+                // Prevent duplicate comments
                 if (Comment::where('recipe_id', $recipe->id)
                            ->where('user_id', $user->id)
                            ->exists()) {

@@ -20,7 +20,7 @@ class CommentController extends Controller
 
         $userId = auth()->id();
 
-        // ⭐ Save rating (one rating per user)
+        // Save rating (one rating per user)
         if ($request->rating && !$request->parent_id) {
             RecipeRating::updateOrCreate(
                 ['recipe_id' => $recipeId, 'user_id' => $userId],
@@ -28,10 +28,10 @@ class CommentController extends Controller
             );
         }
 
-        // ⭐ Save rating inside comment too (so UI can show)
+        // Save rating inside comment too (so UI can show)
         $commentRating = $request->parent_id ? null : $request->rating;
 
-        // 🚫 Only one top-level comment allowed
+        // Only one top-level comment allowed
         if (!$request->parent_id) {
             if (Comment::userHasCommented($recipeId, $userId)) {
                 return back()->with('error', 'You have already commented on this recipe.');
@@ -83,7 +83,7 @@ class CommentController extends Controller
                     ],
                     ['rating' => $request->rating]
                 );
-            } 
+            }
             // If user removed rating → delete rating row
             else {
                 RecipeRating::where('recipe_id', $comment->recipe_id)

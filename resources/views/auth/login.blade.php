@@ -4,8 +4,6 @@
     <title>Login - Leaf Spoon</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    {{-- Local Bootstrap --}}
     <link rel="stylesheet" href="{{ asset('bootstrap-5.0.2-dist/css/bootstrap.min.css') }}">
 
     <style>
@@ -14,11 +12,11 @@
             font-family: 'Poppins', sans-serif;
         }
         .login-card {
-            max-width: 420px; /* WIDER */
+            max-width: 420px;
             width: 100%;
             margin: 60px auto;
             border-radius: 16px;
-            padding: 40px; /* slightly more padding */
+            padding: 40px;
             background: #fff;
             box-shadow: 0 6px 20px rgba(0,0,0,0.08);
         }
@@ -29,7 +27,7 @@
         .login-btn {
             background: #8db36b;
             border: none;
-            color: white !important; /* WHITE TEXT */
+            color: white !important;
             font-weight: 600;
         }
         .login-btn:hover {
@@ -94,7 +92,6 @@
 
 </div>
 
-{{-- Local Bootstrap JS --}}
 <script src="{{ asset('bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') }}"></script>
 
 </body>

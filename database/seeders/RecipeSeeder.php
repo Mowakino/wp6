@@ -10,7 +10,7 @@ class RecipeSeeder extends Seeder
 {
     public function run()
     {
-        $user = User::first(); // assign all recipes to the first user (or random later)
+        $user = User::first();
 
         $recipes = [
             [

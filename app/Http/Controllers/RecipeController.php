@@ -15,7 +15,7 @@ class RecipeController extends Controller
         $query = Recipe::query()
             ->withAvg('ratings', 'rating'); // adds ratings_avg_rating
 
-        // ===== Filters =====
+        // Filters
         if ($request->filled('difficulty')) {
             $query->where('difficulty', $request->difficulty);
         }
@@ -32,12 +32,12 @@ class RecipeController extends Controller
             $query->where('calories', '<=', $request->calories);
         }
 
-        // ===== Sort by rating (using ratings_avg_rating) =====
+        // Sort by rating (using ratings_avg_rating)
         if ($request->filled('sort_rating')) {
             $direction = $request->sort_rating === 'asc' ? 'asc' : 'desc';
             $query->orderBy('ratings_avg_rating', $direction);
         } else {
-            $query->orderBy('id', 'desc'); // default newest first
+            $query->orderBy('id', 'desc');
         }
 
         $recipes = $query->paginate(12)->appends($request->query());
@@ -58,7 +58,7 @@ class RecipeController extends Controller
         $comments = Comment::where('recipe_id', $id)
             ->whereNull('parent_id')
 
-            // ⭐ FIXED RATING FILTER
+            // FIXED RATING FILTER
             ->when($rating, function ($q) use ($rating, $id) {
                 $q->whereIn('id', function ($sub) use ($rating, $id) {
                     $sub->select('comments.id')
@@ -73,7 +73,7 @@ class RecipeController extends Controller
                 });
             })
 
-            // ⭐ SORTING
+            // SORTING
             ->when($sort === 'oldest', function ($q) {
                 $q->orderBy('created_at', 'asc');
             })
@@ -150,7 +150,7 @@ class RecipeController extends Controller
         return view('favorites', compact('recipes'));
     }
 
-    // ===== CREATE =====
+    // CREATE
     public function create()
     {
         return view('recipes.create');
@@ -173,7 +173,7 @@ class RecipeController extends Controller
             'image' => 'required|image|max:4096'
         ]);
 
-        // ✅ store image publicly
+        // store image publicly
         $path = $request->file('image')->store('recipes', 'public');
         $imagePath = 'storage/' . $path;
 
@@ -197,7 +197,7 @@ class RecipeController extends Controller
     }
 
 
-    // ===== EDIT / UPDATE =====
+    // EDIT / UPDATE
     public function edit(Recipe $recipe)
     {
         // Ensure the logged-in user owns this recipe
@@ -255,7 +255,7 @@ class RecipeController extends Controller
             ->with('success', 'Recipe updated successfully!');
     }
 
-    // ===== DELETE =====
+    // DELETE
     public function destroy(Recipe $recipe)
     {
         if ($recipe->user_id !== auth()->id()) {
@@ -267,5 +267,5 @@ class RecipeController extends Controller
         return redirect()->route('profile')
             ->with('success', 'Recipe deleted successfully!');
     }
-    
+
 }

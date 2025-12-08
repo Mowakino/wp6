@@ -74,9 +74,9 @@ class Comment extends Model
         return $this->votes()->where('user_id', $userId)->first();
     }
 
-    /**
-     * ⬅️ FIXED: Retrieve rating using clean query (no alias issues)
-     */
+
+    // Retrieve rating using clean query (no alias issues)
+
     public function ratingRecord()
     {
         return RecipeRating::where('recipe_id', $this->recipe_id)

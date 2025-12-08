@@ -14,9 +14,6 @@
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">Home</a>
-                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('recipes.index') }}">Recipes</a>
@@ -32,12 +29,6 @@
 
             </ul>
 
-            <!-- {{-- Search --}}
-            <form class="d-none d-md-block me-3">
-                <input class="form-control rounded-pill" type="search" placeholder="Search..." style="width: 200px;">
-            </form> -->
-
-            {{-- User (clickable profile box) --}}
             <a href="{{ route('profile') }}" class="d-flex align-items-center gap-2 text-decoration-none text-dark">
                 <img src="{{ asset(auth()->user()->profile_image) }}"
                     class="rounded-circle"

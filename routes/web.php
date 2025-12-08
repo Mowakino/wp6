@@ -40,7 +40,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Recipes Listing
 Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
 
-// ✅ CREATE MUST COME BEFORE SHOW
+// CREATE MUST COME BEFORE SHOW
 Route::get('/recipes/create', [RecipeController::class, 'create'])
     ->middleware('auth')
     ->name('recipes.create');

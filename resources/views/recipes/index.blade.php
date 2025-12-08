@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Recipes</title>
-
-    {{-- Bootstrap --}}
     <link rel="stylesheet" href="{{ asset('bootstrap-5.0.2-dist/css/bootstrap.min.css') }}">
 
     <style>

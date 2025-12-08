@@ -15,7 +15,7 @@ class CreateRecipeRatingsTable extends Migration
             $table->integer('rating');
             $table->timestamps();
 
-            $table->unique(['recipe_id', 'user_id']); // ⭐ Prevent multiple ratings
+            $table->unique(['recipe_id', 'user_id']); // Prevent multiple ratings
         });
     }
 

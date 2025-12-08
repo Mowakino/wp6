@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('cuisine')->nullable();
             $table->string('difficulty')->nullable();
 
-            // ⭐ NEW: Default description
+            // Default description
             $table->text('description')->default('A delicious and healthy recipe prepared with fresh ingredients.');
 
             // Metrics

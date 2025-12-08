@@ -4,8 +4,6 @@
     <title>Register - Leaf Spoon</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    {{-- Local Bootstrap --}}
     <link rel="stylesheet" href="{{ asset('bootstrap-5.0.2-dist/css/bootstrap.min.css') }}">
 
     <style>
@@ -116,9 +114,7 @@
 
 </div>
 
-{{-- Bootstrap JS --}}
 <script src="{{ asset('bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') }}"></script>
-
 <script>
 function togglePassword(id) {
     const input = document.getElementById(id);
