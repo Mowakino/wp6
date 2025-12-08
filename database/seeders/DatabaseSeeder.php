@@ -15,5 +15,10 @@ class DatabaseSeeder extends Seeder
             CommentVoteSeeder::class,
             FavoriteSeeder::class,
         ]);
+
+        \App\Models\Recipe::all()->each(function ($recipe) {
+            $recipe->rating = $recipe->ratings()->avg('rating') ?? 0;
+            $recipe->save();
+        });
     }
 }

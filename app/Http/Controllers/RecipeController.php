@@ -116,25 +116,26 @@ class RecipeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'        => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'description' => 'required|string',
             'ingredients' => 'required|string',
-            'instructions'=> 'required|string',
-            'difficulty'  => 'required|string',
-            'cuisine'     => 'required|string',
-            'time_minutes'=> 'required|integer',
-            'calories'    => 'required|integer',
-            'protein'     => 'required|integer',
-            'fat'         => 'required|integer',
-            'carbs'       => 'required|integer',
-            'image'       => 'required|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'instructions' => 'required|string',
+            'difficulty' => 'required|string',
+            'cuisine' => 'required|string',
+            'time_minutes' => 'required|integer',
+            'calories' => 'required|integer',
+            'protein' => 'required|integer',
+            'fat' => 'required|integer',
+            'carbs' => 'required|integer',
+            'image' => 'required|image|max:4096'
         ]);
 
-        // Upload Image
-        $imagePath = $request->file('image')->store('recipe_images', 'public');
+        // ✅ store image publicly
+        $path = $request->file('image')->store('recipes', 'public');
+        $imagePath = 'storage/' . $path;
 
-        // Store in DB (no more 'rating' column here)
-        auth()->user()->recipes()->create([
+        Recipe::create([
+            'user_id'     => auth()->id(),
             'name'        => $request->name,
             'description' => $request->description,
             'ingredients' => $request->ingredients,
@@ -146,11 +147,12 @@ class RecipeController extends Controller
             'protein'     => $request->protein,
             'fat'         => $request->fat,
             'carbs'       => $request->carbs,
-            'image'       => 'storage/' . $imagePath,
+            'image'       => $imagePath,
         ]);
 
         return redirect()->route('recipes.index')->with('success', 'Recipe created successfully!');
     }
+
 
     // ===== EDIT / UPDATE =====
     public function edit(Recipe $recipe)

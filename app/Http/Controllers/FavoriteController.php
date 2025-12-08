@@ -10,6 +10,6 @@ class FavoriteController extends Controller
     {
         // Get all favorited recipes of the logged-in user
         $recipes = auth()->user()->favorites()->paginate(9);
-        return view('favorites', compact('recipes'));
+        return view('user.favorites', compact('recipes'));
     }
 }

@@ -1,0 +1,3 @@
+kalau udh clone run ini
+php artisan migrate:fresh --seed
+php artisan storage:link

@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('admin123'),
-            'profile_image' => 'profile/default_profile.png',
+            'profile_image' => 'profile_img/default_profile.png',
         ]);
 
         $names = [
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
                 'name'          => $names[$i - 1],
                 'email'         => "testuser{$i}@example.com",
                 'password'      => Hash::make('user123'),
-                'profile_image' => "profile/profile{$i}.png",
+                'profile_image' => "profile_img/profile{$i}.png",
             ]);
         }
     }

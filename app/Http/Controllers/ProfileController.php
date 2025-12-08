@@ -13,7 +13,7 @@ class ProfileController extends Controller
         // Paginate user's created recipes
         $recipes = $user->recipes()->latest()->paginate(5);
 
-        return view('profile', compact('user', 'recipes'));
+        return view('user.profile', compact('user', 'recipes'));
     }
     public function update(Request $request)
     {
