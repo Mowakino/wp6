@@ -207,7 +207,7 @@
 
             {{-- PAGINATION --}}
             <div class="mt-3 d-flex justify-content-center">
-                {{ $recipes->appends(request()->query())->links('pagination::bootstrap-5') }}
+                {{ $recipes->appends(request()->query())->links('vendor.pagination.simple-numbers') }}
             </div>
 
         @endif

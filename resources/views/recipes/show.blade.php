@@ -149,7 +149,7 @@
         @endforeach
 
         <div class="mt-4">
-            {{ $comments->links('pagination::bootstrap-5') }}
+            {{ $comments->links('vendor.pagination.simple-numbers') }}
         </div>
 
     </div>

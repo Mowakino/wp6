@@ -209,7 +209,7 @@
 
                 <!-- PAGINATION -->
                 <div class="mt-4 d-flex justify-content-center">
-                    {{ $recipes->links('pagination::bootstrap-5') }}
+                    {{ $recipes->links('vendor.pagination.simple-numbers') }}
                 </div>
 
             @endif
