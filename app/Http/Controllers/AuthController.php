@@ -31,7 +31,7 @@ class AuthController extends Controller
             'name'          => $request->name,
             'email'         => $request->email,
             'password'      => Hash::make($request->password),
-            'profile_image' => 'default_profile.png',
+            'profile_image' => 'profile_img/default_profile.png',
         ]);
 
         return redirect('/login')->with('success', 'Account created!');

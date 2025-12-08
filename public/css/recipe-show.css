@@ -1,0 +1,81 @@
+body {
+    background: #fafafa;
+    font-family: Arial, sans-serif;
+}
+
+.wrapper {
+    width: 92%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Skeleton */
+.skeleton {
+    background: #e3e3e3;
+    border-radius: 8px;
+    animation: pulse 1.3s infinite;
+}
+@keyframes pulse {
+    0% { opacity: .75; }
+    50% { opacity: .35; }
+    100% { opacity: .75; }
+}
+
+.skel-img { height:350px; border-radius:20px; }
+.skel-title { height:34px; margin:16px 0; }
+.skel-line { height:14px; margin:10px 0; }
+
+/* Recipe */
+.recipe-title { font-size: 42px; font-weight: 700; }
+.hero-img { width:100%; height:350px; border-radius:20px; object-fit:cover; }
+
+.badge-diff { padding:4px 12px; border-radius:12px; font-size:12px; font-weight:700; }
+.badge-diff.easy { background:#dff6dd;color:#2e7d32; }
+.badge-diff.medium { background:#fff1c6;color:#8a6a00; }
+.badge-diff.hard { background:#ffd7d7;color:#c62828; }
+.badge-diff.cuisine { background:#e6f6ec;color:#2d6a4f; }
+
+.desc-text { font-size:16px; color:#444; line-height:1.55; }
+
+/* Nutrition */
+.nutrition-box {
+    background:#f2f2f2;
+    padding:18px 22px;
+    border-radius:12px;
+    margin-top:16px;
+}
+
+/* Comments */
+.comment { padding:18px 0; border-bottom:1px solid #ddd; }
+
+.avatar, .avatar-img {
+    width:40px; height:40px; border-radius:50%; object-fit:cover;
+}
+.avatar {
+    background:#77A169; color:white; display:flex; justify-content:center; align-items:center; font-weight:bold;
+}
+
+.reply-toggle {
+    cursor:pointer; background:none; border:none; color:#4CAF50; font-size:14px;
+}
+.vote-btn { background:none; border:none; cursor:pointer; }
+
+/* Star rating */
+#star-rating span {
+    font-size:30px; cursor:pointer; color:#aaa; transition:.2s;
+}
+#star-rating span.selected {
+    color:#ffcc00;
+}
+
+/* Reply/edit areas */
+.reply-box { max-height:0; overflow:hidden; transition:.25s; margin-left:55px; }
+
+/* Toast */
+#toast {
+    position:fixed; right:25px; bottom:25px;
+    background:#4CAF50; color:white; padding:14px 22px;
+    border-radius:8px; opacity:0; transform:translateY(20px);
+    transition:.35s; z-index:9999;
+}
+#toast.show { opacity:1; transform:translateY(0); }

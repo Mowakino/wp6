@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use App\Models\Comment;
+use App\Models\RecipeRating;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -47,37 +48,79 @@ class RecipeController extends Controller
 
     public function show($id)
     {
-        // Load recipe with user + rating average
         $recipe = Recipe::with(['user'])
             ->withAvg('ratings', 'rating')
             ->findOrFail($id);
 
-        // Determine sorting
         $sort = request('sort', 'newest');
+        $rating = request('rating'); // 1–5 or null
 
-        $commentsQuery = Comment::where('recipe_id', $id)
-                                ->whereNull('parent_id'); // only root comments
+        $comments = Comment::where('recipe_id', $id)
+            ->whereNull('parent_id')
 
-        if ($sort === 'oldest') {
-            $commentsQuery->orderBy('created_at', 'asc');
-        } elseif ($sort === 'liked') {
-            // Sort by number of likes (custom attribute)
-            $commentsQuery->withCount([
-                'votes as likes' => function($q){
-                    $q->where('vote', 1);
-                }
-            ])->orderBy('likes', 'desc');
-        } else {
-            // newest
-            $commentsQuery->orderBy('created_at', 'desc');
-        }
+            // ⭐ FIXED RATING FILTER
+            ->when($rating, function ($q) use ($rating, $id) {
+                $q->whereIn('id', function ($sub) use ($rating, $id) {
+                    $sub->select('comments.id')
+                        ->from('comments')
+                        ->join('recipe_ratings', function ($join) {
+                            $join->on('comments.recipe_id', '=', 'recipe_ratings.recipe_id')
+                                ->on('comments.user_id', '=', 'recipe_ratings.user_id');
+                        })
+                        ->where('comments.recipe_id', $id)
+                        ->whereNull('comments.parent_id')
+                        ->where('recipe_ratings.rating', $rating);
+                });
+            })
 
-        // Always paginate
-        $comments = $commentsQuery->paginate(6)->withQueryString();
+            // ⭐ SORTING
+            ->when($sort === 'oldest', function ($q) {
+                $q->orderBy('created_at', 'asc');
+            })
+            ->when($sort === 'newest', function ($q) {
+                $q->orderBy('created_at', 'desc');
+            })
+            ->when($sort === 'liked', function ($q) {
+                $q->withCount([
+                    'votes as likes_count' => function ($v) {
+                        $v->where('vote', 1);
+                    }
+                ])->orderBy('likes_count', 'desc');
+            })
+            ->when($sort === 'disliked', function ($q) {
+                $q->withCount([
+                    'votes as dislikes_count' => function ($v) {
+                        $v->where('vote', -1);
+                    }
+                ])->orderBy('dislikes_count', 'desc');
+            })
+            ->when($sort === 'highest_rating', function($q) {
+                $q->addSelect([
+                    'user_rating' => RecipeRating::select('rating')
+                        ->whereColumn('recipe_id', 'comments.recipe_id')
+                        ->whereColumn('user_id', 'comments.user_id')
+                        ->limit(1)
+                ]);
+                $q->orderByDesc('user_rating');
+            })
+
+            ->when($sort === 'lowest_rating', function($q) {
+                $q->addSelect([
+                    'user_rating' => RecipeRating::select('rating')
+                        ->whereColumn('recipe_id', 'comments.recipe_id')
+                        ->whereColumn('user_id', 'comments.user_id')
+                        ->limit(1)
+                ]);
+                $q->orderBy('user_rating');
+            })
+
+
+
+            ->paginate(6)
+            ->withQueryString();
 
         return view('recipes.show', compact('recipe', 'comments'));
     }
-
 
     /**
      * Toggle Favorite System (Add or Remove Favorite)
@@ -224,4 +267,5 @@ class RecipeController extends Controller
         return redirect()->route('profile')
             ->with('success', 'Recipe deleted successfully!');
     }
+    
 }

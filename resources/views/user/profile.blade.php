@@ -127,6 +127,8 @@
 
 <x-navbar />
 
+<main class="flex-grow-1"> 
+
 <div class="profile-wrapper">
 
     <div class="row">
@@ -310,6 +312,7 @@
 
 </div>
 
+</main>
 
 <x-footer />
 

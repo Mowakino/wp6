@@ -90,6 +90,8 @@
 
 <x-navbar />
 
+<main class="flex-grow-1"> 
+
 <div class="container py-5">
 
     {{-- PAGE TITLE --}}
@@ -173,6 +175,8 @@
     @endif
 
 </div>
+
+</main>
 
 <x-footer />
 
