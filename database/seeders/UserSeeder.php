@@ -15,15 +15,24 @@ class UserSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('admin123'),
-            'profile_image' => 'default_profile.png',
+            'profile_image' => 'profile/default_profile.png',
         ]);
 
-        // Default Test User
-        User::create([
-            'name' => 'testuser',
-            'email' => 'test@example.com',
-            'password' => Hash::make('user123'),
-            'profile_image' => 'default_profile.png',
-        ]);
+        $names = [
+            'Sarah Smith',
+            'Kenzie Rolland',
+            'Dimas Afradika',
+            'Vlooga Sutanto',
+            'Zasshu Ke'
+        ];
+
+        for ($i = 1; $i <= 5; $i++) {
+            User::create([
+                'name'          => $names[$i - 1],
+                'email'         => "testuser{$i}@example.com",
+                'password'      => Hash::make('user123'),
+                'profile_image' => "profile/profile{$i}.png",
+            ]);
+        }
     }
 }

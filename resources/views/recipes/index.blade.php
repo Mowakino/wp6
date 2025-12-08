@@ -177,9 +177,9 @@
                         <div class="badges">
                             <span class="badge cuisine">{{ $recipe->cuisine }}</span>
 
-                            @if($recipe->difficulty=='easy')
+                            @if($recipe->difficulty=='Easy')
                                 <span class="badge diff diff-easy">Easy</span>
-                            @elseif($recipe->difficulty=='medium')
+                            @elseif($recipe->difficulty=='Medium')
                                 <span class="badge diff diff-medium">Medium</span>
                             @else
                                 <span class="badge diff diff-hard">Hard</span>
