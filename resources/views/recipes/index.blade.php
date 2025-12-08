@@ -89,6 +89,13 @@
     {{-- FILTER BAR --}}
     <form action="{{ route('recipes.index') }}" method="GET" class="row g-3 mb-4">
 
+        <div class="row mb-3 w-100">
+            <div class="col-md-6">
+                <label class="form-label">Search</label>
+                <input type="search" name="q" class="form-control" placeholder="Search recipes by name, description, ingredients..." value="{{ request('q') }}">
+            </div>
+        </div>
+
         <div class="col-md-2">
             <label class="form-label">Difficulty</label>
             <select name="difficulty" class="form-select">
@@ -199,7 +206,7 @@
             </div>
 
             {{-- PAGINATION --}}
-            <div class="mt-4 d-flex justify-content-center">
+            <div class="mt-3 d-flex justify-content-center">
                 {{ $recipes->appends(request()->query())->links('pagination::bootstrap-5') }}
             </div>
 

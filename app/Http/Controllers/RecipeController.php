@@ -32,6 +32,16 @@ class RecipeController extends Controller
             $query->where('calories', '<=', $request->calories);
         }
 
+        // Simple text search across multiple columns
+        if ($request->filled('q')) {
+            $search = trim($request->q);
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%")
+                  ->orWhere('ingredients', 'like', "%{$search}%")
+                  ->orWhere('cuisine', 'like', "%{$search}%");
+            });
+        }
         // Sort by rating (using ratings_avg_rating)
         if ($request->filled('sort_rating')) {
             $direction = $request->sort_rating === 'asc' ? 'asc' : 'desc';
