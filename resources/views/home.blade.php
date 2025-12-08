@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Leaf & Spoon - Home</title>
-
-    {{-- Bootstrap --}}
     <link rel="stylesheet" href="{{ asset('bootstrap-5.0.2-dist/css/bootstrap.min.css') }}">
 
     <style>
@@ -40,6 +38,19 @@
             font-size: 18px;
             margin-top: 10px;
         }
+        .discover-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 1.05rem;
+            color: #ffffff !important;
+            transition: color .25s ease, transform .25s ease;
+        }
+
+        .discover-link:hover {
+            color: #eaeaea !important; /* putih sedikit gelap agar kontras tetap ada */
+            transform: translateX(4px);
+        }
 
         .section-title {
             margin-top: 60px;
@@ -69,9 +80,33 @@
             font-size: 36px;
             font-weight: 600;
         }
+        .recipe-desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 4; /* jumlah baris maksimum */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .recipe-card-container {
+            width: 80%;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.10);
+            border-radius: 18px;
+            padding: 45px 55px;
+            box-shadow: 0 6px 26px rgba(0,0,0,0.08);
+            transition: box-shadow .25s ease, transform .25s ease;
+        }
+
+        .recipe-card-container:hover {
+            box-shadow: 0 10px 36px rgba(0,0,0,0.12);
+            transform: translateY(-3px);
+        }
+
         .carousel-item {
             padding: 40px 0;
         }
+
     </style>
 </head>
 
@@ -84,7 +119,9 @@
     <div class="hero">
         <div class="hero-text">
             <h1>Discover the art of healthy eating</h1>
-            <p class="mt-2">Discover More →</p>
+            <a href="{{ route('recipes.index') }}" class="discover-link fw-bold text-decoration-none">
+            Discover More →
+            </a>
         </div>
     </div>
 
@@ -99,8 +136,8 @@
         <div class="carousel-inner">
             @foreach($recipes as $i => $recipe)
             <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-                
-                <div class="container py-5">
+
+                <div class="container recipe-card-container" style="width: 75%">
                     <div class="row align-items-center">
 
                         {{-- LEFT TEXT AREA --}}
@@ -131,10 +168,9 @@
                                 </span>
                             </div>
                             {{-- Description --}}
-                            <p class="text-muted mt-3" style="max-width: 420px;">
+                            <p class="text-muted mt-3 recipe-desc">
                                 {{ Str::limit($recipe->description, 160) }}
                             </p>
-
                             {{-- Buttons --}}
                             <div class="mt-4 d-flex gap-3">
 
@@ -150,7 +186,7 @@
                                 </form>
 
                                 {{-- Learn More --}}
-                                <a href="{{ route('recipes.show', $recipe->id) }}" 
+                                <a href="{{ route('recipes.show', $recipe->id) }}"
                                 class="btn btn-link text-dark fw-semibold"
                                 style="text-decoration: none;">
                                     Learn More →
@@ -161,7 +197,7 @@
 
                         {{-- RIGHT IMAGE --}}
                         <div class="col-md-6 text-center">
-                            <img src="{{ asset($recipe->image) }}" 
+                            <img src="{{ asset($recipe->image) }}"
                                 class="rounded"
                                 style="width: 100%; max-width: 460px; height: 340px; object-fit: cover;">
                         </div>

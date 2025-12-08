@@ -59,10 +59,33 @@
                 <label class="form-label">Cuisine</label>
                 <select name="cuisine" class="form-select" required>
                     <option value="">Choose...</option>
-                    <option {{ $recipe->cuisine=='Italian' ? 'selected' : '' }}>Italian</option>
-                    <option {{ $recipe->cuisine=='Asian' ? 'selected' : '' }}>Asian</option>
-                    <option {{ $recipe->cuisine=='American' ? 'selected' : '' }}>American</option>
-                    <option {{ $recipe->cuisine=='Mexican' ? 'selected' : '' }}>Mexican</option>
+                        <option {{ $recipe->cuisine=='American' ? 'selected' : '' }}>
+                            American
+                        </option>
+                        <option {{ $recipe->cuisine=='Asian' ? 'selected' : '' }}>
+                            Asian
+                        </option>
+                        <option {{ $recipe->cuisine=='Chinese' ? 'selected' : '' }}>
+                            Chinese
+                        </option>
+                        <option {{ $recipe->cuisine=='Indian' ? 'selected' : '' }}>
+                            Indian
+                        </option>
+                        <option {{ $recipe->cuisine=='Indonesian' ? 'selected' : '' }}>
+                            Indonesian
+                        </option>
+                        <option {{ $recipe->cuisine=='Italian' ? 'selected' : '' }}>
+                            Italian
+                        </option>
+                        <option {{ $recipe->cuisine=='Japanese' ? 'selected' : '' }}>
+                            Japanese
+                        </option>
+                        <option {{ $recipe->cuisine=='Mexican' ? 'selected' : '' }}>
+                            Mexican
+                        </option>
+                        <option {{ $recipe->cuisine=='Western' ? 'selected' : '' }}>
+                            Western
+                        </option>
                 </select>
             </div>
 

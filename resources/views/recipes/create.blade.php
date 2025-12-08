@@ -58,10 +58,15 @@
                 <label class="form-label">Cuisine</label>
                 <select name="cuisine" class="form-select" required>
                     <option value="">Choose...</option>
-                    <option>Italian</option>
-                    <option>Asian</option>
                     <option>American</option>
+                    <option>Asian</option>
+                    <option>Chinese</option>
+                    <option>Indian</option>
+                    <option>Indonesian</option>
+                    <option>Italian</option>
+                    <option>Japanese</option>
                     <option>Mexican</option>
+                    <option>Western</option>
                 </select>
             </div>
 

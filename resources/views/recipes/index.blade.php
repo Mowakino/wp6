@@ -110,10 +110,15 @@
             <label class="form-label">Cuisine</label>
             <select name="cuisine" class="form-select">
                 <option value="">Any</option>
-                <option value="Italian" {{ request('cuisine')=='Italian' ? 'selected' : '' }}>Italian</option>
-                <option value="Asian" {{ request('cuisine')=='Asian' ? 'selected' : '' }}>Asian</option>
                 <option value="American" {{ request('cuisine')=='American' ? 'selected' : '' }}>American</option>
+                <option value="Asian" {{ request('cuisine')=='Asian' ? 'selected' : '' }}>Asian</option>
+                <option value="Chinese" {{ request('cuisine')=='Chinese' ? 'selected' : '' }}>Chinese</option>
+                <option value="Indian" {{ request('cuisine')=='Indian' ? 'selected' : '' }}>Indian</option>
+                <option value="Indonesian" {{ request('cuisine')=='Indonesian' ? 'selected' : '' }}>Indonesian</option>
+                <option value="Italian" {{ request('cuisine')=='Italian' ? 'selected' : '' }}>Italian</option>
+                <option value="Japanese" {{ request('cuisine')=='Japanese' ? 'selected' : '' }}>Japanese</option>
                 <option value="Mexican" {{ request('cuisine')=='Mexican' ? 'selected' : '' }}>Mexican</option>
+                <option value="Western" {{ request('cuisine')=='Western' ? 'selected' : '' }}>Western</option>
             </select>
         </div>
 
