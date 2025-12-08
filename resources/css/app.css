@@ -1,0 +1,19 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+    color: #333;
+    font-size: 14px;
+}
+
