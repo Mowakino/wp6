@@ -6,7 +6,7 @@
 
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="{{ asset('bootstrap-5.0.2-dist/css/bootstrap.min.css') }}">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         body {
             background: #fafafa;
@@ -90,7 +90,7 @@
 
 <x-navbar />
 
-<main class="flex-grow-1"> 
+<main class="flex-grow-1">
 
 <div class="container py-5">
 
@@ -100,8 +100,8 @@
     @if ($recipes->isEmpty())
         <div class="text-center py-5">
 
-            <img src="{{ asset('svg/empty.svg') }}" 
-                alt="No favorites" 
+            <img src="{{ asset('svg/empty.svg') }}"
+                alt="No favorites"
                 style="width:140px; opacity:0.6;" class="mb-3">
 
             <h3 class="fw-bold">No Favorite Recipes Yet</h3>
@@ -193,5 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script src="{{ asset('bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

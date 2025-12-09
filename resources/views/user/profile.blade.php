@@ -5,7 +5,7 @@
     <title>{{ $user->name }} - Profile | Leaf & Spoon</title>
 
     <link rel="stylesheet" href="{{ asset('bootstrap-5.0.2-dist/css/bootstrap.min.css') }}">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         body {
             background: #fafafa;
@@ -127,7 +127,7 @@
 
 <x-navbar />
 
-<main class="flex-grow-1"> 
+<main class="flex-grow-1">
 
 <div class="profile-wrapper">
 
@@ -263,7 +263,7 @@
 </div>
 
 <!-- ================= EDIT PROFILE MODAL ================= -->
-<div id="editProfileModal" 
+<div id="editProfileModal"
      style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
             background:rgba(0,0,0,0.55); backdrop-filter:blur(3px);
             z-index:9999; justify-content:center; align-items:center;">
@@ -272,8 +272,8 @@
                 box-shadow:0 8px 30px rgba(0,0,0,0.2); position:relative;">
 
         <!-- CLOSE BUTTON -->
-        <button onclick="closeProfileModal()" 
-                style="position:absolute; top:12px; right:14px; 
+        <button onclick="closeProfileModal()"
+                style="position:absolute; top:12px; right:14px;
                        background:none; border:none; font-size:20px; opacity:.6;">
             ✕
         </button>
@@ -286,7 +286,7 @@
 
             <!-- PHOTO -->
             <label class="form-label fw-bold">Profile Photo</label><br>
-            <img src="{{ asset(Auth::user()->profile_image) }}" 
+            <img src="{{ asset(Auth::user()->profile_image) }}"
                  style="width:80px; height:80px; border-radius:50%; object-fit:cover;">
             <input type="file" name="profile_image" class="form-control mt-2">
 
@@ -315,7 +315,7 @@
 </main>
 
 <x-footer />
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="{{ asset('bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') }}"></script>
 <script>
 function openProfileModal() {

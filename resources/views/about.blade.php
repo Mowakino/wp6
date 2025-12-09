@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="{{ asset('bootstrap-5.0.2-dist/css/bootstrap.min.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <style>
     body {
         font-family: 'Nunito Sans', sans-serif;
@@ -103,9 +103,9 @@
         <div class="about-box mx-auto">
             <h2 class="text-center fw-bold mb-4">About us</h2>
             <p class="about-text">
-                Leaf & Spoon is a health-focused platform dedicated to making nutritious eating simple, 
-                enjoyable, and accessible. Through smart technology and curated nutritional guidance, 
-                we help users discover balanced recipes, create personalized meal plans, and build 
+                Leaf & Spoon is a health-focused platform dedicated to making nutritious eating simple,
+                enjoyable, and accessible. Through smart technology and curated nutritional guidance,
+                we help users discover balanced recipes, create personalized meal plans, and build
                 sustainable healthy habits all with clarity, convenience, and a touch of inspiration.
             </p>
         </div>
@@ -150,7 +150,7 @@
                 <div class="mission-card">
                     <h4>Our Mission</h4>
                     <p class="mt-2">
-                        To empower individuals to make better food choices by providing 
+                        To empower individuals to make better food choices by providing
                         accessible, enjoyable, and nutritionally balanced meal solutions.
                     </p>
                 </div>
@@ -160,7 +160,7 @@
                 <div class="mission-card">
                     <h4>Our Vision</h4>
                     <p class="mt-2">
-                        A world where healthy eating becomes effortless, sustainable, 
+                        A world where healthy eating becomes effortless, sustainable,
                         and embraced as a joyful part of everyday life.
                     </p>
                 </div>
@@ -171,7 +171,7 @@
     </div>
 
     <x-footer />
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="{{ asset('bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
