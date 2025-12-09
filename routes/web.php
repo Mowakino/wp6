@@ -97,12 +97,10 @@ Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'edit'])
     ->middleware('auth')
     ->name('recipes.edit');
 
-// Update recipe
 Route::put('/recipes/{recipe}', [RecipeController::class, 'update'])
     ->middleware('auth')
     ->name('recipes.update');
 
-// Delete recipe
 Route::delete('/recipes/{recipe}', [RecipeController::class, 'destroy'])
     ->middleware('auth')
     ->name('recipes.destroy');
