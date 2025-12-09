@@ -54,6 +54,22 @@ body {
 .avatar {
     background:#77A169; color:white; display:flex; justify-content:center; align-items:center; font-weight:bold;
 }
+/* Smaller avatar for reply comments */
+.avatar-img-small {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatar.small {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .reply-toggle {
     cursor:pointer; background:none; border:none; color:#4CAF50; font-size:14px;
