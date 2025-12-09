@@ -11,9 +11,8 @@ class RecipeController extends Controller
 {
     public function index(Request $request)
     {
-        // Start query and include average rating from recipe_ratings
         $query = Recipe::query()
-            ->withAvg('ratings', 'rating'); // adds ratings_avg_rating
+            ->withAvg('ratings', 'rating');
 
         // Filters
         if ($request->filled('difficulty')) {
@@ -32,7 +31,6 @@ class RecipeController extends Controller
             $query->where('calories', '<=', $request->calories);
         }
 
-        // Simple text search across multiple columns
         if ($request->filled('q')) {
             $search = trim($request->q);
             $query->where(function ($q) use ($search) {
@@ -42,7 +40,7 @@ class RecipeController extends Controller
                   ->orWhere('cuisine', 'like', "%{$search}%");
             });
         }
-        // Sort by rating (using ratings_avg_rating)
+
         if ($request->filled('sort_rating')) {
             $direction = $request->sort_rating === 'asc' ? 'asc' : 'desc';
             $query->orderBy('ratings_avg_rating', $direction);
@@ -63,12 +61,11 @@ class RecipeController extends Controller
             ->findOrFail($id);
 
         $sort = request('sort', 'newest');
-        $rating = request('rating'); // 1–5 or null
+        $rating = request('rating');
 
         $comments = Comment::where('recipe_id', $id)
             ->whereNull('parent_id')
 
-            // FIXED RATING FILTER
             ->when($rating, function ($q) use ($rating, $id) {
                 $q->whereIn('id', function ($sub) use ($rating, $id) {
                     $sub->select('comments.id')
@@ -132,9 +129,6 @@ class RecipeController extends Controller
         return view('recipes.show', compact('recipe', 'comments'));
     }
 
-    /**
-     * Toggle Favorite System (Add or Remove Favorite)
-     */
     public function toggleFavorite(Recipe $recipe)
     {
         $user = auth()->user();
@@ -152,7 +146,6 @@ class RecipeController extends Controller
     {
         $user = auth()->user();
 
-        // Get only favorite recipes (you can also withAvg here if you want ratings on favorites page)
         $recipes = $user->favorites()
             ->withAvg('ratings', 'rating')
             ->paginate(12);
@@ -160,7 +153,6 @@ class RecipeController extends Controller
         return view('favorites', compact('recipes'));
     }
 
-    // CREATE
     public function create()
     {
         return view('recipes.create');
@@ -183,7 +175,6 @@ class RecipeController extends Controller
             'image' => 'required|image|max:4096'
         ]);
 
-        // store image publicly
         $path = $request->file('image')->store('recipes', 'public');
         $imagePath = 'storage/' . $path;
 
@@ -207,10 +198,9 @@ class RecipeController extends Controller
     }
 
 
-    // EDIT / UPDATE
     public function edit(Recipe $recipe)
     {
-        // Ensure the logged-in user owns this recipe
+        // auth
         if ($recipe->user_id !== auth()->id()) {
             abort(403, 'Unauthorized');
         }
@@ -239,7 +229,6 @@ class RecipeController extends Controller
             'image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
-        // Update all text fields
         $recipe->update([
             'name'        => $request->name,
             'description' => $request->description,
@@ -254,7 +243,7 @@ class RecipeController extends Controller
             'cuisine'     => $request->cuisine,
         ]);
 
-        // If user uploaded new image
+        // If new image
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('recipes', 'public');
             $recipe->image = 'storage/' . $path;
@@ -265,7 +254,6 @@ class RecipeController extends Controller
             ->with('success', 'Recipe updated successfully!');
     }
 
-    // DELETE
     public function destroy(Recipe $recipe)
     {
         if ($recipe->user_id !== auth()->id()) {

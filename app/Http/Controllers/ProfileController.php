@@ -15,6 +15,7 @@ class ProfileController extends Controller
 
         return view('user.profile', compact('user', 'recipes'));
     }
+    
     public function update(Request $request)
     {
         $user = auth()->user();

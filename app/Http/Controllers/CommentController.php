@@ -8,9 +8,6 @@ use App\Models\RecipeRating;
 
 class CommentController extends Controller
 {
-    /**
-     * Store new comment or reply
-     */
     public function store(Request $request, $recipeId)
     {
         $request->validate([
@@ -28,10 +25,8 @@ class CommentController extends Controller
             );
         }
 
-        // Save rating inside comment too (so UI can show)
         $commentRating = $request->parent_id ? null : $request->rating;
 
-        // Only one top-level comment allowed
         if (!$request->parent_id) {
             if (Comment::userHasCommented($recipeId, $userId)) {
                 return back()->with('error', 'You have already commented on this recipe.');
@@ -50,13 +45,8 @@ class CommentController extends Controller
         return back()->with('success', 'Comment posted.');
     }
 
-
-    /**
-     * Update an existing comment (text + rating)
-     */
     public function update(Request $request, Comment $comment)
     {
-        // Only comment owner can edit
         if ($comment->user_id !== auth()->id()) {
             abort(403);
         }
@@ -66,15 +56,12 @@ class CommentController extends Controller
             'rating'  => 'nullable|integer|min:1|max:5',
         ]);
 
-        // Update comment text
         $comment->update([
             'content' => $request->content,
         ]);
 
-        // Handle rating updates ONLY for top-level comments
         if (!$comment->parent_id) {
 
-            // If user selected rating → update or create rating
             if ($request->rating) {
                 RecipeRating::updateOrCreate(
                     [
@@ -84,7 +71,6 @@ class CommentController extends Controller
                     ['rating' => $request->rating]
                 );
             }
-            // If user removed rating → delete rating row
             else {
                 RecipeRating::where('recipe_id', $comment->recipe_id)
                             ->where('user_id', $comment->user_id)
@@ -95,10 +81,6 @@ class CommentController extends Controller
         return back()->with('success', 'Comment updated.');
     }
 
-
-    /**
-     * Delete comment
-     */
     public function destroy(Comment $comment)
     {
         if ($comment->user_id !== auth()->id()) {
@@ -107,10 +89,8 @@ class CommentController extends Controller
 
         $recipeId = $comment->recipe_id;
 
-        // Delete comment
         $comment->delete();
 
-        // Delete user's rating (if exists)
         RecipeRating::where('recipe_id', $recipeId)
                     ->where('user_id', $comment->user_id)
                     ->delete();
