@@ -6,6 +6,35 @@
 
     <link rel="stylesheet" href="{{ asset('bootstrap-5.0.2-dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/recipe-show.css') }}">
+    <style>
+        .ingredients-box, .steps-box {
+            background: #ffffff;
+            border: 1px solid #e3e3e3;
+            border-radius: 12px;
+            padding: 22px 26px;
+            margin-top: 10px;
+        }
+
+        .ingredients-box ul,
+        .steps-box ol {
+            padding-left: 18px;
+            margin: 0;
+            line-height: 1.55;
+            font-size: 15px;
+        }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: 600;
+            margin-top: 45px;
+            margin-bottom: 12px;
+        }
+
+        .steps-box ol li + li {
+            margin-top: 10px;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -79,10 +108,21 @@
                 </form>
 
                 <div class="section-title">Ingredients</div>
-                <p class="desc-text">{!! nl2br(e($recipe->ingredients)) !!}</p>
+                <div class="ingredients-box">
+                    <ul>
+                        @foreach(explode("\n", trim($recipe->ingredients)) as $item)
+                            @if(strlen(trim($item)) > 0)
+                                <li>{{ trim($item) }}</li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
 
                 <div class="section-title">Step-by-step</div>
-                <p class="desc-text">{!! nl2br(e($recipe->instructions)) !!}</p>
+                <div class="steps-box">
+                    <p class="desc-text">{!! nl2br(e($recipe->instructions)) !!}</p>
+                </div>
+
             </div>
 
             <!-- IMAGE -->

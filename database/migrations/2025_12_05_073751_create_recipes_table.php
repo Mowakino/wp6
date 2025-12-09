@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('difficulty')->nullable();
 
             // Default description
-            $table->text('description')->default('A delicious and healthy recipe prepared with fresh ingredients.');
+            $table->text('description')->nullable();
 
             // Metrics
             $table->integer('time_minutes')->nullable();
