@@ -70,19 +70,20 @@ class RecipeSeeder extends Seeder
                 "image" => "food/salmon.jpg",
             ],
             [
-            "name" => "Chicken Caesar Salad",
-            "description" => "Crisp romaine hearts tossed in creamy house-made Caesar dressing, topped with juicy grilled chicken, crunchy parmesan croutons and shaved Parmigiano-Reggiano.",
-            "ingredients" => "2 large romaine lettuce hearts\n400 g boneless skinless chicken breasts\n2 slices day-old bread (cubed)\n¼ cup grated Parmesan\n¼ cup shaved Parmigiano-Reggiano\n2 Tbsp olive oil\n1 egg yolk\n1 tsp Dijon mustard\n1 tsp Worcestershire sauce\n1 anchovy fillet (minced)\n1 clove garlic (minced)\nJuice of ½ lemon
-            3 Tbsp neutral oil
-            Salt & cracked black pepper",
-            "instructions" => "1. Season chicken with salt, pepper & 1 tsp olive oil; grill 6 min per side until 75 °C internal. Rest 5 min, slice thin.\n2. Cube bread; toss with 1 Tbsp oil, grated Parmesan, pinch salt. Bake 8 min at 200 °C until golden croutons.\n3. Whisk egg yolk, mustard, anchovy, garlic, lemon juice, Worcestershire; slowly drizzle in 3 Tbsp oil to emulsify. Season.\n4. Tear romaine into large bowl; add dressing, toss to coat.\n5. Top with sliced chicken, croutons and shaved Parmigiano. Serve immediately.",
-            "difficulty" => "Medium",
-            "cuisine" => "American",
-            "time_minutes" => 20,
-            "calories" => 480,
-            "protein" => 42,
-            "fat" => 28,
-            "carbs" => 18,
+                "name" => "Chicken Caesar Salad",
+                "description" => "Crisp romaine hearts tossed in creamy house-made Caesar dressing, topped with juicy grilled chicken, crunchy parmesan croutons and shaved Parmigiano-Reggiano.",
+                "ingredients" => "2 large romaine lettuce hearts\n400 g boneless skinless chicken breasts\n2 slices day-old bread (cubed)\n¼ cup grated Parmesan\n¼ cup shaved Parmigiano-Reggiano\n2 Tbsp olive oil\n1 egg yolk\n1 tsp Dijon mustard\n1 tsp Worcestershire sauce\n1 anchovy fillet (minced)\n1 clove garlic (minced)\nJuice of ½ lemon
+                3 Tbsp neutral oil
+                Salt & cracked black pepper",
+                "instructions" => "1. Season chicken with salt, pepper & 1 tsp olive oil; grill 6 min per side until 75 °C internal. Rest 5 min, slice thin.\n2. Cube bread; toss with 1 Tbsp oil, grated Parmesan, pinch salt. Bake 8 min at 200 °C until golden croutons.\n3. Whisk egg yolk, mustard, anchovy, garlic, lemon juice, Worcestershire; slowly drizzle in 3 Tbsp oil to emulsify. Season.\n4. Tear romaine into large bowl; add dressing, toss to coat.\n5. Top with sliced chicken, croutons and shaved Parmigiano. Serve immediately.",
+                "difficulty" => "Medium",
+                "cuisine" => "American",
+                "time_minutes" => 20,
+                "calories" => 480,
+                "protein" => 42,
+                "fat" => 28,
+                "carbs" => 18,
+                "image" => "food/caesar.jpg",
             ],
             [
                 "name" => "Margherita Pizza",
