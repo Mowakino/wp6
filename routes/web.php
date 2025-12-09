@@ -12,6 +12,13 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+// Authentication
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+
 // Home
 Route::get('/home', function () {
     $recipes = Recipe::withAvg('ratings', 'rating')
@@ -23,24 +30,9 @@ Route::get('/home', function () {
     return view('home', compact('recipes'));
 })->name('home');
 
-// About
-Route::get('/about', function () {
-    return view('about');
-})->name('about-us');
-
-// Auth
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-
-Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
-
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
 // Recipes Listing
 Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
 
-// CREATE MUST COME BEFORE SHOW
 Route::get('/recipes/create', [RecipeController::class, 'create'])
     ->middleware('auth')
     ->name('recipes.create');
@@ -72,11 +64,14 @@ Route::patch('/comments/{comment}', [CommentController::class, 'update'])
     ->name('comments.update')
     ->middleware('auth');
 
-// DELETE COMMENT
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])
     ->name('comments.destroy')
     ->middleware('auth');
 
+// About
+Route::get('/about', function () {
+    return view('about');
+})->name('about-us');
 
 // Favorites
 Route::post('/recipes/{recipe}/favorite', [RecipeController::class, 'toggleFavorite'])
@@ -91,9 +86,13 @@ Route::get('/favorites', [FavoriteController::class, 'index'])
 Route::get('/profile', [ProfileController::class, 'index'])
     ->middleware('auth')
     ->name('profile');
-//edit profile
+
 Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-// Edit form
+
+//logout profile
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Edit recipe
 Route::get('/recipes/{recipe}/edit', [RecipeController::class, 'edit'])
     ->middleware('auth')
     ->name('recipes.edit');
